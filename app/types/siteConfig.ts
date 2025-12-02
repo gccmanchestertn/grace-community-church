@@ -4,7 +4,7 @@ export const siteConfigZ = z.object({
   title: z.string().nullish(),
   url: z.string().url().nullish(),
   address: addressZ,
-  phone: z.string().nullish(),
+  phoneNumber: z.string().nullish(),
   email: z.string().email().nullish(),
   services: timeArrayZ.nullish(),
   socialLinks: z.array(socialLinkZ).nullish(),
