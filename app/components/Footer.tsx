@@ -8,8 +8,8 @@ export const Footer = (props: SiteConfigDocument) => {
     <footer className="bg-green-dark px-8 mt-24">
       <div className="container py-16 mx-auto relative flex justify-between items-start gap-16 flex-wrap ">
         <Logo theme="light"  width={450} />
-
-        <ServiceWidget
+        <div>
+          <ServiceWidget
           title=""
 					wrapperClassName="my-0"
 					showAddress={true}
@@ -18,6 +18,14 @@ export const Footer = (props: SiteConfigDocument) => {
           times={props?.services}
           theme="light"
         />
+        {props?.phoneNumber && (
+          <div className="flex gap-6 items-center justify-center">
+            <span className="text-white font-semibold">Phone:</span>
+            <a className="text-white" href={`tel:${props.phoneNumber}`}>{props.phoneNumber}</a>
+          </div>
+        )}
+        </div>
+        
         <LatestSermonsList theme="light" />
       </div>
       <div className="flex items-center justify-center relative mx-auto container  py-2 ">

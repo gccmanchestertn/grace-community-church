@@ -6,6 +6,7 @@ import { addressZ, timeArrayZ } from "~/types/shared";
 const serviceWidgetZ = timeArrayZ.extend({
   title: z.string().nullish(),
   times: timeArrayZ.nullish(),
+  phoneNumber: z.string().nullish(),
   address: addressZ.nullish(),
   showAddress: z.boolean().default(false),
 	wrapperClassName: z.string().nullish(),
@@ -21,6 +22,7 @@ export const ServiceWidget = ({
   showAddress,
 	wrapperClassName,
   theme,
+  phoneNumber
 }: ServiceWidgetProps) => {
   const urlEncodedAddress = encodeURIComponent(
     address?.streetAddress +
@@ -74,6 +76,12 @@ export const ServiceWidget = ({
               );
             })}
           </ul>
+        </div>
+      )}
+      {phoneNumber && (
+        <div className="flex gap-6 items-center">
+          <span className={cn(theme === "light" ? "text-white" : "text-black", "font-semibold")}>Phone:</span>
+          <a href={`tel:${phoneNumber}`}>{phoneNumber}</a>
         </div>
       )}
     </div>

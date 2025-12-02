@@ -255,6 +255,8 @@ export const SITE_CONFIG_QUERY = groq`
 		title,
 		url,
 		address,
+		phoneNumber,
+		email,
 		services {
 			${TIME_ARRAY_FRAGMENT}
 		},

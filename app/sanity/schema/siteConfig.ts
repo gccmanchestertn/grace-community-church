@@ -1,5 +1,5 @@
 import { defineField, defineType } from "sanity";
-import { Cog } from 'lucide-react'
+import { Cog } from "lucide-react";
 
 export const siteConfig = defineType({
   name: "siteConfig",
@@ -19,14 +19,26 @@ export const siteConfig = defineType({
       type: "url",
       description: "The URL of your website, used to create canonical url",
     }),
-		defineField({
-			type: "address",
-			name: "address"
-		}),
-		defineField({
-			name: "services",
-			type: "timeArray"
-		}),
+    defineField({
+      title: "Phone Number",
+      name: "phoneNumber",
+      type: "string",
+      description: "The phone number of your church",
+    }),
+    defineField({
+      title: "Email",
+      name: "email",
+      type: "string",
+      description: "The email address of your church",
+    }),
+    defineField({
+      type: "address",
+      name: "address",
+    }),
+    defineField({
+      name: "services",
+      type: "timeArray",
+    }),
     defineField({
       title: "Social Media Links",
       name: "socialLinks",
@@ -36,8 +48,7 @@ export const siteConfig = defineType({
     defineField({
       title: "Main navigation",
       name: "mainNavigation",
-      description:
-        "Select pages for the top menu. ",
+      description: "Select pages for the top menu. ",
       validation: (Rule) => [
         Rule.max(5).warning("Are you sure you want more than 5 items?"),
         Rule.unique().error("You have duplicate menu items"),
