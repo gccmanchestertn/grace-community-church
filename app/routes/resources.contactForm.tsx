@@ -13,7 +13,6 @@ import { MinistryType, ministryZ } from "~/types/ministry";
 import Select from "react-select";
 import sgMail from "@sendgrid/mail";
 import {
-  useField,
   useControlField,
   setFormDefaults,
   ValidatedForm,
@@ -157,8 +156,8 @@ export const loader = async ({ request, params }: LoaderFunctionArgs) => {
 //   return redirect(`/thank-you`);
 // };
 
-export const ContactEmail = () => {
-  const { error, getInputProps, validate } = useField(name);
+// export const ContactEmail = () => {
+//   const { error, getInputProps, validate } = useField(name);
   const [value, setValue] = useControlField<{ label: string; value: string }>(
     name
   );
