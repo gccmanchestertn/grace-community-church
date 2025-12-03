@@ -1,17 +1,11 @@
 import { useFetcher } from "@remix-run/react";
 import {
-  ActionFunctionArgs,
   LoaderFunctionArgs,
-  json,
-  redirect,
+  json
 } from "@vercel/remix";
 import { HTMLInputTypeAttribute, useEffect } from "react";
-import { z } from "zod";
 import { loadQuery } from "~/sanity/loader.server";
 import { ALL_MINISTRIES, SITE_CONFIG_QUERY } from "~/sanity/queries";
-import { MinistryType, ministryZ } from "~/types/ministry";
-import Select from "react-select";
-import sgMail from "@sendgrid/mail";
 import {
   useControlField,
   setFormDefaults,
@@ -20,9 +14,6 @@ import {
   validationError,
 } from "remix-validated-form";
 import { Send } from "lucide-react";
-import { cn } from "~/lib/misc";
-import { contactFormValidator } from "~/components/ContactForm";
-import { writeClient } from "~/sanity/client.server";
 import { SiteConfigDocument, siteConfigZ } from "~/types/siteConfig";
 export const loader = async ({ request, params }: LoaderFunctionArgs) => {
   const { searchParams } = new URL(request.url);
@@ -156,7 +147,7 @@ export const loader = async ({ request, params }: LoaderFunctionArgs) => {
 //   return redirect(`/thank-you`);
 // };
 
-// export const ContactEmail = () => {
+export const ContactEmail = () => {
 //   const { error, getInputProps, validate } = useField(name);
   const [value, setValue] = useControlField<{ label: string; value: string }>(
     name
@@ -164,7 +155,6 @@ export const loader = async ({ request, params }: LoaderFunctionArgs) => {
   const contactFetcher = useFetcher<typeof loader>();
   const email = contactFetcher.data?.email ?? "";
 
-  console.log({ value, ...getInputProps({ id: "subject" }) });
 
   useEffect(() => {
     if (contactFetcher.state === "idle" && contactFetcher.data == null) {
@@ -174,7 +164,7 @@ export const loader = async ({ request, params }: LoaderFunctionArgs) => {
 
   return (
     <a href={`mailto:${email}`} className="border-black border-[1px] text-black  hover:bg-black hover:border-black hover:text-white	focus:text-white focus:bg-black focus:border-black uppercase font-semibold tracking-[1.6px] p-4 transition-colors shadow-sm duration-150 ease-in-out hover:shadow-md inline-block">
-      Contact
+      Contact <Send className="size-6" />
     </a>
   );
 };
