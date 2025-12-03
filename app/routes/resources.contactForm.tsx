@@ -5,14 +5,7 @@ import {
 } from "@vercel/remix";
 import { HTMLInputTypeAttribute, useEffect } from "react";
 import { loadQuery } from "~/sanity/loader.server";
-import { ALL_MINISTRIES, SITE_CONFIG_QUERY } from "~/sanity/queries";
-import {
-  useControlField,
-  setFormDefaults,
-  ValidatedForm,
-  useIsSubmitting,
-  validationError,
-} from "remix-validated-form";
+import { SITE_CONFIG_QUERY } from "~/sanity/queries";
 import { Send } from "lucide-react";
 import { SiteConfigDocument, siteConfigZ } from "~/types/siteConfig";
 export const loader = async ({ request, params }: LoaderFunctionArgs) => {
@@ -148,10 +141,6 @@ export const loader = async ({ request, params }: LoaderFunctionArgs) => {
 // };
 
 export const ContactEmail = () => {
-//   const { error, getInputProps, validate } = useField(name);
-  const [value, setValue] = useControlField<{ label: string; value: string }>(
-    name
-  );
   const contactFetcher = useFetcher<typeof loader>();
   const email = contactFetcher.data?.email ?? "";
 
