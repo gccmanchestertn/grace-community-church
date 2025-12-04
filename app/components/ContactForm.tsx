@@ -1,4 +1,3 @@
-
 import { withZod } from "@remix-validated-form/with-zod";
 import { z } from "zod";
 import { ContactEmail } from "~/routes/resources.contactForm";
@@ -29,11 +28,10 @@ type FormInputProps = {
 };
 
 export const ContactForm = () => {
-
-
-
   return (
-    <ContactEmail />
-    
+    <div className="max-w-sm">
+      <h2 className="mb-8 text-center">Send us a message</h2>
+      <ContactEmail />
+    </div>
   );
 };

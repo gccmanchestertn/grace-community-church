@@ -17,13 +17,14 @@ export const loader = async ({ request, params }: LoaderFunctionArgs) => {
       ? siteConfigZ.parse(res.data)
       : null,
   }));
+  console.log(data.data?.email);
 
-  if (!data?.data?.length) {
+  if (!data?.data) {
     throw new Response("Not found", { status: 404 });
   }
 
   return json({
-    email: data.data[0]?.email || "",
+    email: data.data?.email || "",
   });
 };
 
@@ -152,8 +153,11 @@ export const ContactEmail = () => {
   }, [contactFetcher]);
 
   return (
-    <a href={`mailto:${email}`} className="border-black border-[1px] text-black  hover:bg-black hover:border-black hover:text-white	focus:text-white focus:bg-black focus:border-black uppercase font-semibold tracking-[1.6px] p-4 transition-colors shadow-sm duration-150 ease-in-out hover:shadow-md inline-block">
-      Contact <Send className="size-6" />
-    </a>
+    <div className="min-w-64">
+
+      <a href={`mailto:${email}`} className="self-center border-black border-[1px] text-black  hover:bg-black hover:border-black hover:text-white	focus:text-white focus:bg-black focus:border-black uppercase font-semibold tracking-[1.6px] p-4 transition-colors shadow-sm duration-150 ease-in-out hover:shadow-md flex gap-2 w-full justify-center" >
+        Contact <Send className="size-6" />
+      </a>
+    </div>
   );
 };
